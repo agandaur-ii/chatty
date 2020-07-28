@@ -11,7 +11,19 @@ export default class SignUp extends Component {
                         Sign Up To
                         <Link to="/">Chatty</Link>
                     </h1>
-                    <p></p>
+                    <p>Fill in the form below to create an account.</p>
+                    <div>
+                        <input placeholder="Email" name="email" type="email" onChange={this.handleChange} value={this.state.email}></input>
+                    </div>
+                    <div>
+                        <input placeholder="Pasword" name="password" type="password" onChange={this.handleChange} value={this.state.password}></input>
+                    </div>
+                    <div>
+                        {this.state.error ? <p>{this.state.error}</p> : null}
+                        <button type="submit">Sign up</button>
+                    </div>
+                    <hr></hr>
+                    <p>Already have an account? <Link to="/login">Login</Link></p>
                 </form>
             </div>
         )
