@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -35,25 +35,27 @@ function PublicRoute({ component: Component, authenticated, ...rest}) {
   )
 }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      authenticated: false,
+      loading: true
+    }
+  }
+
+  render() {
+    return this.state.loading === true ? <h2>Loading...</h2> : (
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
+          <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
+          <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
+        </Switch>
+      </Router>
+    )
+  }
 }
 
 export default App;
