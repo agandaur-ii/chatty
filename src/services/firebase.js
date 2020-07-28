@@ -1,10 +1,14 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import "firebase/auth";
+import "firebase/database";
 
 const config = {
     apiKey: "AIzaSyCUNB92R7MzTblhllOy2t5hLIebEz2TYMg",
     authDomain: "chatty-9de71.firebaseapp.com",
     databaseURL: "https://chatty-9de71.firebaseio.com"
-  };
-  firebase.initializeApp(config);
-  export const auth = firebase.auth;
-  export const db = firebase.database();
+};
+
+firebase.initializeApp(config);
+  
+export const auth = firebase.auth;
+export const db = firebase.database();
